@@ -8,6 +8,10 @@ module "check_tomleonard_co_uk" {
   expected_text = "Some poems, letters, a web journal 2009-2014, and a page with books for sale can be reached via menu to left."
   tags          = "tomleonard"
   website_url   = "http://tomleonard.co.uk"
+
+  aws_cloudwatch_event_rule_name = "tom_leonard_log_rule"
+  lambda_permission_statement_id = "check_tom_leonard_permissions"
+
 }
 
 module "tom_leonard_site" {
