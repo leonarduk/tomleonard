@@ -1,5 +1,5 @@
 module "check_tomleonard_co_uk" {
-  source = "modules/web_site_checker"
+  source = "./modules/web_site_checker"
 
   function_name        = "test_tomleonard_co_uk"
   function_description = "checks tomleonard.co.uk"
@@ -11,7 +11,7 @@ module "check_tomleonard_co_uk" {
 }
 
 module "tom_leonard_site" {
-  source = "modules/static-website"
+  source = "./modules/static-website"
 
   tag_name         = "tomleonard"
   domain_name      = "www.tomleonard.co.uk"
