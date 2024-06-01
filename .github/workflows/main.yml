@@ -1,4 +1,4 @@
-name: Example workflow for S3 Deploy
+name: Deploy to S3 
 on: [push]
 jobs:
   run:
@@ -21,7 +21,7 @@ jobs:
           folder: build
           bucket: ${{ secrets.S3_BUCKET }}
           bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          # dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
           invalidation: /
           delete-removed: true
           no-cache: true
