@@ -17,6 +17,6 @@ jobs:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PWD }}
           local_dir: "s3"
-          remote_dir: "/public_html/tom_archive/git"
+          remote_dir: "/public_html/tom_archive"
           delete: "false"
           exlude: "data/ cache/"
