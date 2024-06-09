@@ -1,16 +1,21 @@
-name: Deploy via ftp
-on: push
+name: 🚀 Deploy
+on:
+  push:
+    branches: [ master ]
+
 jobs:
-  deploy:
-    name: Deploy
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Upload ftp
-      uses: GenieTim/ftp-action@v4.0.1
-      with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_USER }}
-        localDir: "s3"
-        remoteDir: "/public_html/tom_archive/git"
+      - uses: actions/checkout@v2
+      # Here is the deployment action
+      - name: Upload from output to a remote server via FTP
+        uses: modern-dev/ftp-mirror@v2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PWD }}
+          local_dir: "s3"
+          remote_dir: "/public_html/tom_archive/git"
+          delete: "false"
+          exlude: "data/ cache/"
