@@ -1,17 +1,16 @@
-name: Deploy via git-ftp
+name: Deploy via ftp
 on: push
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    - name: Upload ftp
+      uses: genietim/ftp-action@releases/v4
       with:
-        fetch-depth: 0
-    - name: git-ftp push
-      uses: sebastianpopp/git-ftp-action@releases/v3
-      with:
-        folder: s3
-        url: ${{ secrets.FTP_PATH }}
+        host: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PWD }}
+        password: ${{ secrets.FTP_USER }}
+        localDir: "s3"
+        remoteDir: "/public_html/tom_archive/git"
