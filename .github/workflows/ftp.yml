@@ -2,11 +2,12 @@ name: 🚀 Deploy
 on:
   push:
     branches: [ master ]
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: sudo apt install lftp
       - uses: actions/checkout@v2
       # Here is the deployment action
       - name: Upload from output to a remote server via FTP
