@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+Redirect 301 /journal/mayapril2012.html http://tomleonard.co.uk/journal/mayapril2012-sp-1408760732.html
+Redirect 301 /web-linksdcab.feed?type=rss http://tomleonard.co.uk/web-links.html
+Redirect 301 /templates/ja_purity_ii/ http://tomleonard.co.uk
+
+  </IfModule> 
