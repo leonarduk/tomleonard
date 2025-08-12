@@ -9,6 +9,8 @@ jobs:
     steps:
       - run: sudo apt install lftp
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npx clean-css-cli -o s3/styles.css s3/styles.css
       # Here is the deployment action
       - name: Upload from output to a remote server via FTP
         uses: modern-dev/ftp-mirror@v2

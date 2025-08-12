@@ -1,0 +1,12 @@
+name: Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: bash tests/test_styles.sh

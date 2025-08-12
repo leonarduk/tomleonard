@@ -10,6 +10,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npx clean-css-cli -o s3/styles.css s3/styles.css
 
       - name: Deploy
         uses: reggionick/s3-deploy@v4
