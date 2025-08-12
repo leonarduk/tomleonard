@@ -4,17 +4,26 @@ import hashlib
 import json
 from pathlib import Path
 
+from bs4 import BeautifulSoup
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 S3_DIR = BASE_DIR / "s3"
 CHECKSUM_FILE = Path(__file__).with_name("expected_checksums.json")
 
 
+def rendered_text(path: Path) -> str:
+    """Return visible text for ``path`` as a browser would render."""
+    soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+    return soup.get_text(separator="\n", strip=True)
+
+
 def compute_checksums() -> dict[str, str]:
-    """Return SHA256 checksums for all HTML files under ``s3``."""
+    """Return SHA256 checksums for rendered text of all HTML files under ``s3``."""
     checksums: dict[str, str] = {}
     for path in sorted(S3_DIR.rglob("*.html")):
         rel_path = path.relative_to(BASE_DIR).as_posix()
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        text = rendered_text(path)
+        digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
         checksums[rel_path] = digest
     return checksums
 

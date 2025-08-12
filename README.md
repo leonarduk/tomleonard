@@ -10,9 +10,10 @@ All content owned by Tom Leonard Literary Estate
 
 ## Snapshot checks
 
-HTML files under `s3/` are tracked with SHA256 digests. The expected values live in `tests/expected_checksums.json`.
+The browser-visible text from each HTML file under `s3/` is hashed with SHA256.
+Expected digests live in `tests/expected_checksums.json`.
 
-When HTML changes are intentional, regenerate the snapshot file by running:
+When changes to rendered output are intentional, regenerate the snapshot file by running:
 
 ```bash
 python tests/test_snapshots.py
