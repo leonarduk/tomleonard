@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt install lftp
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npx clean-css-cli -o s3/styles.css s3/styles.css
       # Here is the deployment action
@@ -21,4 +21,4 @@ jobs:
           local_dir: "s3"
           remote_dir: "/public_html/tom_archive"
           delete: "false"
-          exlude: "data/ cache/"
+          exclude: "data/ cache/"
