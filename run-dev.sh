@@ -7,6 +7,12 @@ if [ ! -f package.json ]; then
   exit 1
 fi
 
+# Ensure npm is installed
+if ! command -v npm >/dev/null 2>&1; then
+  echo "npm is not installed. Please install Node.js and npm." >&2
+  exit 1
+fi
+
 # First install packages already listed in package.json
 npm install
 
